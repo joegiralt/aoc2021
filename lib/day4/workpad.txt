@@ -1,0 +1,26 @@
+ # diagonal
+    #   matrix
+    #   |> M.unwrap()
+    #   |> Enum.with_index()
+    #   |> Enum.map(fn {row, i} ->
+    #     Enum.at(row, i)
+    #   end)
+    #   |> MapSet.new()
+
+    # other_diagonal
+    #   matrix
+    #   |> M.unwrap()
+    #   |> Enum.with_index()
+    #   |> Enum.map(fn {row, i} ->
+    #     Enum.at(row, -1 * (i + 1))
+    #   end)
+    #   |> Enum.reject(fn i -> i == "x" end)
+    #   |> MapSet.new()
+
+    # for visual inspection testing
+    # Map.values(%{
+    #   horizontal: horizontal,
+    #   column: column,
+    #   diagonal: [diagonal],
+    #   other_diagonal: [other_diagonal]
+    # })
