@@ -36,7 +36,7 @@ defmodule Aoc2021.Day4.Solution do
 
       {
         game.boards
-        |> Enum.find(&Aoc2021.Day4.Solution.bingo?(&1, drawn_set))
+        |> Enum.find(&bingo?(&1, drawn_set))
         |> List.wrap(),
         drawn_set
       }
@@ -55,7 +55,7 @@ defmodule Aoc2021.Day4.Solution do
           Range.new(0, Enum.count(game.draw))
           |> Enum.find(fn idx ->
             drawn_set = drawn_set(game.draw, idx)
-            Aoc2021.Day4.Solution.bingo?(board, drawn_set)
+            bingo?(board, drawn_set)
           end)
 
         {idx, board, drawn_set(game.draw, idx)}
