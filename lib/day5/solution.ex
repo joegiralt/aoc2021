@@ -1,6 +1,5 @@
 defmodule Aoc2021.Day5.Solution do
   alias Aoc2021.Utils.Line
-  require IEx
 
   def part(1) do
     input()
@@ -8,18 +7,18 @@ defmodule Aoc2021.Day5.Solution do
       elem(line.start, 0) == elem(line.end, 0) || elem(line.start, 1) == elem(line.end, 1)
     end)
     |> Enum.flat_map(fn line -> line.point_coords end)
-    |> Enum.reduce(%{}, fn point, map -> Map.update(map, point, 0, &(&1 + 1)) end)
-    |> Map.values()
-    |> Enum.filter(fn num -> num != 0 end)
-    |> Enum.count()
+    |> count_frequencies()
   end
 
   def part(2) do
-    input()
-    |> Enum.flat_map(fn line -> line.point_coords end)
-    |> Enum.reduce(%{}, fn point, map -> Map.update(map, point, 0, &(&1 + 1)) end)
+    input() |> Enum.flat_map(fn line -> line.point_coords end) |> count_frequencies()
+  end
+
+  def count_frequencies(coords) do
+    coords
+    |> Enum.frequencies()
     |> Map.values()
-    |> Enum.filter(fn num -> num != 0 end)
+    |> Enum.filter(fn num -> num != 1 end)
     |> Enum.count()
   end
 
