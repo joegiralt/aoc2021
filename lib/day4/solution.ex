@@ -2,8 +2,6 @@ defmodule Aoc2021.Day4.Solution do
   alias Aoc2021.Utils.Matrix, as: M
   defstruct draw: [], boards: []
 
-  require IEx
-
   def part(number) do
     new() |> solve(number)
   end
@@ -14,13 +12,13 @@ defmodule Aoc2021.Day4.Solution do
     |> MapSet.new()
   end
 
-  def solve(game, number) do
+  def solve(game, part_number) do
     game
-    |> find_winning_boards(number)
+    |> find_winning_board(part_number)
     |> reduce_to_answer(game.draw)
   end
 
-  def winning_board?(board, drawn_set) do
+  def bingo?(board, drawn_set) do
     board
     |> Enum.map(fn row_set ->
       MapSet.intersection(drawn_set, row_set) |> Enum.count() == 5
@@ -30,7 +28,7 @@ defmodule Aoc2021.Day4.Solution do
     |> List.last()
   end
 
-  def find_winning_boards(game, 1) do
+  def find_winning_board(game, 1) do
     game.draw
     |> Enum.with_index()
     |> Enum.map(fn {_x, idx} ->
@@ -38,7 +36,7 @@ defmodule Aoc2021.Day4.Solution do
 
       {
         game.boards
-        |> Enum.find(&Aoc2021.Day4.Solution.winning_board?(&1, drawn_set))
+        |> Enum.find(&Aoc2021.Day4.Solution.bingo?(&1, drawn_set))
         |> List.wrap(),
         drawn_set
       }
@@ -47,21 +45,21 @@ defmodule Aoc2021.Day4.Solution do
     |> List.first()
   end
 
-  def find_winning_boards(game, 2) do
+  def find_winning_board(game, 2) do
     result =
       game.boards
-      |> Flow.from_enumerable()
+      |> Flow.from_enumerable(max_demand: 1, stages: Enum.count(game.boards))
+      |> Flow.partition(max_demand: 5)
       |> Flow.map(fn board ->
         idx =
           Range.new(0, Enum.count(game.draw))
           |> Enum.find(fn idx ->
             drawn_set = drawn_set(game.draw, idx)
-            Aoc2021.Day4.Solution.winning_board?(board, drawn_set)
+            Aoc2021.Day4.Solution.bingo?(board, drawn_set)
           end)
 
         {idx, board, drawn_set(game.draw, idx)}
       end)
-      |> Flow.partition()
       |> Enum.to_list()
       |> Enum.sort()
       |> List.last()
@@ -92,7 +90,11 @@ defmodule Aoc2021.Day4.Solution do
       |> Enum.reject(fn x -> x == [""] end)
 
     %{
-      draw: input_draws |> List.first() |> String.split(",") |> Enum.map(&String.to_integer(&1)),
+      draw:
+        input_draws
+        |> List.first()
+        |> String.split(",")
+        |> Enum.map(&String.to_integer(&1)),
       boards:
         input_boards
         |> Enum.map(fn collect ->
@@ -105,7 +107,7 @@ defmodule Aoc2021.Day4.Solution do
           end)
         end)
         |> Enum.map(&M.new(&1))
-        |> Enum.map(&bingo(&1))
+        |> Enum.map(&craft_board(&1))
     }
   end
 
@@ -114,7 +116,7 @@ defmodule Aoc2021.Day4.Solution do
     |> Advent2021.Parser.parse_list(&Function.identity(&1))
   end
 
-  def bingo(matrix) do
+  def craft_board(matrix) do
     [
       # columns
       matrix
