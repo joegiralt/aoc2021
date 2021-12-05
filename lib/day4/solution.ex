@@ -50,7 +50,8 @@ defmodule Aoc2021.Day4.Solution do
   def find_winning_boards(game, 2) do
     result =
       game.boards
-      |> Stream.map(fn board ->
+      |> Flow.from_enumerable()
+      |> Flow.map(fn board ->
         idx =
           Range.new(0, Enum.count(game.draw))
           |> Enum.find(fn idx ->
@@ -60,6 +61,8 @@ defmodule Aoc2021.Day4.Solution do
 
         {idx, board, drawn_set(game.draw, idx)}
       end)
+      |> Flow.partition()
+      |> Enum.to_list()
       |> Enum.sort()
       |> List.last()
 
