@@ -14,42 +14,60 @@ defmodule Aoc2021.Day4.Solution do
     |> MapSet.new()
   end
 
-  def solve(game, 1) do
+  def solve(game, number) do
     game
-    |> find_winning_boards()
-    |> Enum.reject(&is_nil/1)
-    |> List.first()
-    |> reduce_to_answer(game)
+    |> find_winning_boards(number)
+    |> reduce_to_answer(game.draw)
   end
 
-  def solve(game, 2) do
-    game
-    |> find_winning_boards()
-    |> Enum.reject(&is_nil/1)
-    |> Enum.map(&reduce_to_answer(&1, game))
-  end
-
-  def find_winning_boards(game) do
-    game.draw
-    |> Enum.with_index()
-    |> Enum.flat_map(fn {_x, idx} ->
-      drawn_set = drawn_set(game.draw, idx)
-
-      game.boards
-      |> Enum.flat_map(&find_winning_board(&1, drawn_set))
-    end)
-  end
-
-  def find_winning_board(board, drawn_set) do
+  def winning_board?(board, drawn_set) do
     board
     |> Enum.map(fn row_set ->
-      if MapSet.intersection(drawn_set, row_set) |> Enum.count() == 5 do
-        {board, drawn_set}
-      end
+      MapSet.intersection(drawn_set, row_set) |> Enum.count() == 5
     end)
+    |> Enum.uniq()
+    |> Enum.sort()
+    |> List.last()
   end
 
-  def reduce_to_answer(pair, game) do
+  def find_winning_boards(game, 1) do
+    game.draw
+    |> Enum.with_index()
+    |> Enum.map(fn {_x, idx} ->
+      drawn_set = drawn_set(game.draw, idx)
+
+      {
+        game.boards
+        |> Enum.find(&Aoc2021.Day4.Solution.winning_board?(&1, drawn_set))
+        |> List.wrap(),
+        drawn_set
+      }
+    end)
+    |> Enum.reject(fn {board, _} -> [] == board end)
+    |> List.first()
+  end
+
+  def find_winning_boards(game, 2) do
+    result =
+      game.boards
+      |> Stream.map(fn board ->
+        idx =
+          Range.new(0, Enum.count(game.draw))
+          |> Enum.find(fn idx ->
+            drawn_set = drawn_set(game.draw, idx)
+            Aoc2021.Day4.Solution.winning_board?(board, drawn_set)
+          end)
+
+        {idx, board, drawn_set(game.draw, idx)}
+      end)
+      |> Enum.sort()
+      |> List.last()
+
+    {_draw_idx, board, draw_set} = result
+    {board, draw_set}
+  end
+
+  def reduce_to_answer(pair, draw) do
     {bingo_board, winning_draw} = pair
 
     bingo_board
@@ -60,7 +78,7 @@ defmodule Aoc2021.Day4.Solution do
     |> List.flatten()
     |> (fn remaining_list_vals ->
           Enum.sum(remaining_list_vals) / 2 *
-            Enum.at(game.draw, Enum.count(winning_draw) - 1)
+            Enum.at(draw, Enum.count(winning_draw) - 1)
         end).()
   end
 
@@ -89,7 +107,7 @@ defmodule Aoc2021.Day4.Solution do
   end
 
   def input do
-    File.read!("lib/day4/test.txt")
+    File.read!("lib/day4/input.txt")
     |> Advent2021.Parser.parse_list(&Function.identity(&1))
   end
 
