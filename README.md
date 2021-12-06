@@ -39,6 +39,8 @@ Day 4, Part 1        164.40        6.08 ms     ±6.72%        6.00 ms        7.8
 Day 4, Part 2        109.89        9.10 ms     ±4.69%        9.06 ms       10.50 ms
 Day 5, Part 1         16.65       60.05 ms     ±3.34%       60.16 ms       65.66 ms
 Day 5, Part 2         11.62       86.04 ms     ±3.94%       86.09 ms       96.25 ms
+Day 6, Part 2        3.77 K        0.27 ms    ±16.24%        0.26 ms        0.32 ms
+Day 6, Part 1      0.0109 K       91.67 ms     ±8.09%       90.19 ms      144.16 ms
 
 Comparison: 
 Day 1, Part 1       2360.17
