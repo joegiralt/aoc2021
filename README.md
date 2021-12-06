@@ -17,7 +17,7 @@ time: 10 s
 memory time: 0 ns
 parallel: 1
 inputs: none specified
-Estimated total run time: 2.25 min
+Estimated total run time: 2.75 min
 
 Benchmarking Day 1, Part 1...
 Benchmarking Day 1, Part 2...
@@ -28,28 +28,32 @@ Benchmarking Day 4, Part 1...
 Benchmarking Day 4, Part 2...
 Benchmarking Day 5, Part 1...
 Benchmarking Day 5, Part 2...
+Benchmarking Day 6, Part 1...
+Benchmarking Day 6, Part 2...
 
 Name                    ips        average  deviation         median         99th %
-Day 1, Part 1       2360.17        0.42 ms    ±41.87%        0.41 ms        0.65 ms
-Day 1, Part 2       1471.81        0.68 ms    ±23.26%        0.66 ms        0.84 ms
-Day 3, Part 1        430.43        2.32 ms     ±8.93%        2.24 ms        2.74 ms
-Day 2, Part 1        181.95        5.50 ms     ±9.00%        5.43 ms        6.75 ms
-Day 2, Part 2        170.00        5.88 ms    ±24.87%        5.52 ms       12.42 ms
-Day 4, Part 1        164.40        6.08 ms     ±6.72%        6.00 ms        7.86 ms
-Day 4, Part 2        109.89        9.10 ms     ±4.69%        9.06 ms       10.50 ms
-Day 5, Part 1         16.65       60.05 ms     ±3.34%       60.16 ms       65.66 ms
-Day 5, Part 2         11.62       86.04 ms     ±3.94%       86.09 ms       96.25 ms
-Day 6, Part 2        3.77 K        0.27 ms    ±16.24%        0.26 ms        0.32 ms
-Day 6, Part 1      0.0109 K       91.67 ms     ±8.09%       90.19 ms      144.16 ms
+Day 6, Part 2       3790.80        0.26 ms    ±13.46%        0.26 ms        0.30 ms
+Day 1, Part 1       2571.69        0.39 ms    ±20.11%        0.38 ms        0.51 ms
+Day 1, Part 2       1450.81        0.69 ms    ±43.37%        0.66 ms        0.93 ms
+Day 3, Part 1        432.26        2.31 ms     ±7.42%        2.23 ms        2.77 ms
+Day 2, Part 2        179.81        5.56 ms     ±7.77%        5.45 ms        6.71 ms
+Day 2, Part 1        179.19        5.58 ms     ±6.30%        5.52 ms        7.16 ms
+Day 4, Part 1        166.63        6.00 ms     ±3.42%        5.99 ms        6.78 ms
+Day 4, Part 2        109.97        9.09 ms     ±5.04%        9.04 ms       10.58 ms
+Day 5, Part 1         16.48       60.69 ms     ±5.38%       60.44 ms       80.70 ms
+Day 5, Part 2         11.64       85.88 ms     ±3.55%       86.09 ms       95.20 ms
+Day 6, Part 1         10.64       93.95 ms     ±1.42%       93.73 ms      102.01 ms
 
 Comparison: 
-Day 1, Part 1       2360.17
-Day 1, Part 2       1471.81 - 1.60x slower +0.26 ms
-Day 3, Part 1        430.43 - 5.48x slower +1.90 ms
-Day 2, Part 1        181.95 - 12.97x slower +5.07 ms
-Day 2, Part 2        170.00 - 13.88x slower +5.46 ms
-Day 4, Part 1        164.40 - 14.36x slower +5.66 ms
-Day 4, Part 2        109.89 - 21.48x slower +8.68 ms
-Day 5, Part 1         16.65 - 141.73x slower +59.63 ms
-Day 5, Part 2         11.62 - 203.07x slower +85.62 ms
+Day 6, Part 2       3790.80
+Day 1, Part 1       2571.69 - 1.47x slower +0.125 ms
+Day 1, Part 2       1450.81 - 2.61x slower +0.43 ms
+Day 3, Part 1        432.26 - 8.77x slower +2.05 ms
+Day 2, Part 2        179.81 - 21.08x slower +5.30 ms
+Day 2, Part 1        179.19 - 21.16x slower +5.32 ms
+Day 4, Part 1        166.63 - 22.75x slower +5.74 ms
+Day 4, Part 2        109.97 - 34.47x slower +8.83 ms
+Day 5, Part 1         16.48 - 230.06x slower +60.43 ms
+Day 5, Part 2         11.64 - 325.55x slower +85.61 ms
+Day 6, Part 1         10.64 - 356.14x slower +93.69 ms
 ```
