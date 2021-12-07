@@ -1,4 +1,7 @@
 defmodule Aoc2021.Day2.Solution do
+  require IEx
+  import Nx.Defn
+
   def part(1) do
     %{"down" => down, "forward" => forward, "up" => up} = traversals()
     (down - up) * forward
@@ -10,6 +13,59 @@ defmodule Aoc2021.Day2.Solution do
       |> Enum.reduce(%{}, &dir_update/2)
 
     depth * forward
+  end
+
+  def part(1, :nx) do
+    File.read!("lib/day2/input.txt")
+    |> String.split("\n")
+    |> Enum.map(fn line ->
+      [direction, amt] = String.split(line)
+      amt_int = String.to_integer(amt)
+
+      case direction do
+        "forward" -> {amt_int, 0}
+        "up" -> {0, -amt_int}
+        "down" -> {0, amt_int}
+      end
+    end)
+    |> Enum.unzip()
+    |> then(fn {xs, ys} ->
+      Nx.multiply(
+        Nx.sum(Nx.tensor(xs)),
+        Nx.sum(Nx.tensor(ys))
+      )
+    end)
+  end
+
+  def part(1, :defn) do
+    File.read!("lib/day2/input.txt")
+    |> String.split("\n", trim: true)
+    |> Enum.map(fn
+      "forward " <> number -> [0, String.to_integer(number)]
+      "up " <> number -> [1, String.to_integer(number)]
+      "down " <> number -> [2, String.to_integer(number)]
+    end)
+    |> Nx.tensor()
+    |> navigate()
+  end
+
+  defn navigate(tensor) do
+    {size, _} = Nx.shape(tensor)
+
+    {_, depth, position, _} =
+      while {i = 0, depth = 0, position = 0, tensor}, i < size do
+        instruction = tensor[i][0]
+        value = tensor[i][1]
+
+        cond do
+          instruction == 0 -> {i + 1, depth, position + value, tensor}
+          instruction == 1 -> {i + 1, depth + value, position, tensor}
+          instruction == 2 -> {i + 1, depth - value, position, tensor}
+          :other_wise -> {i + 1, depth, position, tensor}
+        end
+      end
+
+    depth * position
   end
 
   def traversals do

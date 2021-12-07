@@ -24,7 +24,8 @@ defmodule Aoc2021.MixProject do
       {:fastglobal, "~> 1.0"},
       {:benchee, "~> 1.0", only: :dev},
       {:flow, "~> 1.0"},
-      {:nx, "~> 0.1.0-dev", github: "elixir-nx/nx", branch: "main", sparse: "nx"}
+      {:exla, "~> 0.1.0-dev", github: "elixir-nx/nx", sparse: "exla"},
+      {:nx, "~> 0.1.0-dev", github: "elixir-nx/nx", branch: "main", sparse: "nx", override: true}
     ]
   end
 end
