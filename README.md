@@ -2,14 +2,14 @@
 
 Advent of  code 
 
-# Becnhmarks
+# Benchmarks
 ```txt
 Operating System: macOS
 CPU Information: Apple M1 Max
 Number of Available Cores: 10
 Available memory: 64 GB
-Elixir 1.13.0-dev
-Erlang 24.1.3
+Elixir 1.13.0
+Erlang 24.1.7
 
 Benchmark suite executing with the following configuration:
 warmup: 5 s
@@ -17,13 +17,14 @@ time: 10 s
 memory time: 0 ns
 parallel: 1
 inputs: none specified
-Estimated total run time: 2.75 min
+Estimated total run time: 3 min
 
 Benchmarking Day 1, Part 1...
 Benchmarking Day 1, Part 2...
 Benchmarking Day 2, Part 1...
 Benchmarking Day 2, Part 2...
 Benchmarking Day 3, Part 1...
+Benchmarking Day 3, Part 2...
 Benchmarking Day 4, Part 1...
 Benchmarking Day 4, Part 2...
 Benchmarking Day 5, Part 1...
@@ -32,28 +33,30 @@ Benchmarking Day 6, Part 1...
 Benchmarking Day 6, Part 2...
 
 Name                    ips        average  deviation         median         99th %
-Day 6, Part 2       3790.80        0.26 ms    ±13.46%        0.26 ms        0.30 ms
-Day 1, Part 1       2571.69        0.39 ms    ±20.11%        0.38 ms        0.51 ms
-Day 1, Part 2       1450.81        0.69 ms    ±43.37%        0.66 ms        0.93 ms
-Day 3, Part 1        432.26        2.31 ms     ±7.42%        2.23 ms        2.77 ms
-Day 2, Part 2        179.81        5.56 ms     ±7.77%        5.45 ms        6.71 ms
-Day 2, Part 1        179.19        5.58 ms     ±6.30%        5.52 ms        7.16 ms
-Day 4, Part 1        166.63        6.00 ms     ±3.42%        5.99 ms        6.78 ms
-Day 4, Part 2        109.97        9.09 ms     ±5.04%        9.04 ms       10.58 ms
-Day 5, Part 1         16.48       60.69 ms     ±5.38%       60.44 ms       80.70 ms
-Day 5, Part 2         11.64       85.88 ms     ±3.55%       86.09 ms       95.20 ms
-Day 6, Part 1         10.64       93.95 ms     ±1.42%       93.73 ms      102.01 ms
+Day 6, Part 2       3652.97        0.27 ms    ±39.60%        0.26 ms        0.46 ms
+Day 1, Part 1       2353.07        0.42 ms    ±21.04%        0.41 ms        0.65 ms
+Day 1, Part 2       1368.28        0.73 ms    ±12.59%        0.72 ms        1.06 ms
+Day 3, Part 1        429.28        2.33 ms     ±9.19%        2.25 ms        2.92 ms
+Day 3, Part 2        348.86        2.87 ms     ±8.83%        2.73 ms        3.69 ms
+Day 2, Part 2        163.26        6.13 ms    ±29.97%        5.52 ms       12.88 ms
+Day 4, Part 1        162.87        6.14 ms     ±2.70%        6.13 ms        6.86 ms
+Day 2, Part 1        162.02        6.17 ms    ±33.10%        5.44 ms       12.75 ms
+Day 4, Part 2        107.71        9.28 ms     ±4.34%        9.25 ms       10.67 ms
+Day 5, Part 1         14.10       70.94 ms    ±42.43%       61.57 ms      207.27 ms
+Day 5, Part 2         11.55       86.61 ms     ±3.55%       86.33 ms       94.22 ms
+Day 6, Part 1         10.77       92.86 ms     ±2.81%       92.16 ms      106.87 ms
 
 Comparison: 
-Day 6, Part 2       3790.80
-Day 1, Part 1       2571.69 - 1.47x slower +0.125 ms
-Day 1, Part 2       1450.81 - 2.61x slower +0.43 ms
-Day 3, Part 1        432.26 - 8.77x slower +2.05 ms
-Day 2, Part 2        179.81 - 21.08x slower +5.30 ms
-Day 2, Part 1        179.19 - 21.16x slower +5.32 ms
-Day 4, Part 1        166.63 - 22.75x slower +5.74 ms
-Day 4, Part 2        109.97 - 34.47x slower +8.83 ms
-Day 5, Part 1         16.48 - 230.06x slower +60.43 ms
-Day 5, Part 2         11.64 - 325.55x slower +85.61 ms
-Day 6, Part 1         10.64 - 356.14x slower +93.69 ms
+Day 6, Part 2       3652.97
+Day 1, Part 1       2353.07 - 1.55x slower +0.151 ms
+Day 1, Part 2       1368.28 - 2.67x slower +0.46 ms
+Day 3, Part 1        429.28 - 8.51x slower +2.06 ms
+Day 3, Part 2        348.86 - 10.47x slower +2.59 ms
+Day 2, Part 2        163.26 - 22.37x slower +5.85 ms
+Day 4, Part 1        162.87 - 22.43x slower +5.87 ms
+Day 2, Part 1        162.02 - 22.55x slower +5.90 ms
+Day 4, Part 2        107.71 - 33.92x slower +9.01 ms
+Day 5, Part 1         14.10 - 259.15x slower +70.67 ms
+Day 5, Part 2         11.55 - 316.39x slower +86.34 ms
+Day 6, Part 1         10.77 - 339.20x slower +92.58 ms
 ```
