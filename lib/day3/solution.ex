@@ -74,7 +74,7 @@ defmodule Aoc2021.Day3.Solution do
       |> Enum.frequencies()
       |> Map.update("1", 0, &(&1 + 0))
       |> Map.update("0", 0, &(&1 + 0))
-      |> bit_criteria_fn.()
+      |> then(bit_criteria_fn)
 
     bit_list
     |> Enum.filter(fn bit_list -> Enum.at(bit_list, depth) == bit end)

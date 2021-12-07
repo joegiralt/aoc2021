@@ -21,6 +21,7 @@ defmodule Aoc2021.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
+      {:fastglobal, "~> 1.0"},
       {:benchee, "~> 1.0", only: :dev},
       {:flow, "~> 1.0"},
       {:nx, "~> 0.1.0-dev", github: "elixir-nx/nx", branch: "main", sparse: "nx"}
