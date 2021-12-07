@@ -17,8 +17,8 @@ defmodule Aoc2021.Day6.Solution do
     zero_count = Map.get(fish, 0, 0)
 
     fish
-    |> Enum.filter(fn {n, _} -> n > 0 end)
-    |> Enum.map(fn {n, k} -> {n - 1, k} end)
+    |> Enum.filter(fn {timer, _} -> timer > 0 end)
+    |> Enum.map(fn {timer, fish_count} -> {timer - 1, fish_count} end)
     |> Map.new()
     |> Map.update(6, zero_count, &(&1 + zero_count))
     |> Map.put(8, zero_count)
