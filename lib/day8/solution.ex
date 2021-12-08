@@ -1,16 +1,17 @@
 defmodule Aoc2021.Day8.Solution do
+  require IEx
+
   def part(1) do
     input()
-    |> Enum.map(&List.last(&1))
-    |> Enum.flat_map(&String.split(&1, " "))
-    |> IO.inspect()
-    |> Enum.map(&String.length(&1))
-    |> IO.inspect()
-    |> Enum.map(&map_num(&1))
-    |> IO.inspect()
+    |> Flow.from_enumerable(max_demand: 1, stages: 1)
+    |> Flow.partition(max_demand: 1)
+    |> Flow.map(&List.last(&1))
+    |> Flow.flat_map(&String.split(&1, " "))
+    |> Flow.map(&String.length(&1))
+    |> Flow.map(&map_num(&1))
+    |> Enum.to_list()
     |> Enum.frequencies()
     |> Map.delete(0)
-    |> IO.inspect()
     |> Map.values()
     |> Enum.sum()
   end
@@ -31,10 +32,10 @@ defmodule Aoc2021.Day8.Solution do
   #  4 shares 3 rungs with 3
 
   def part(2) do
-    File.read!("lib/day8/input.txt")
-    |> Advent2021.Parser.parse_list(&Function.identity(&1))
-    |> Flow.from_enumerable(max_demand: 1, stages: 1)
-    |> Flow.partition(max_demand: 2)
+    File.stream!("lib/day8/input.txt", read_ahead: 10)
+    |> Flow.from_enumerable(max_demand: 5, stages: 10)
+    |> Flow.partition(max_demand: 5)
+    |> Flow.map(&(&1 |> String.trim() |> String.split("\n") |> List.first()))
     |> Flow.map(&(&1 |> String.split([" ", " | "]) |> Enum.split(10)))
     |> Flow.map(fn {input, output} ->
       input
@@ -44,15 +45,18 @@ defmodule Aoc2021.Day8.Solution do
       end)
       |> Enum.group_by(&length/1)
       |> then(fn map ->
+        # known by lengths
         one = List.first(map[2])
         seven = List.first(map[3])
         four = List.first(map[4])
         eight = List.first(map[7])
 
+        # 5 lengths -> [2,3,5]
         three = Enum.find(map[5], &(length(&1 -- one) == 3))
         five = Enum.find(map[5] -- [three], &(length(&1 -- four) == 2))
         two = List.first(map[5] -- [three, five])
 
+        # 6 lengths -> [6,9,0]
         nine = Enum.find(map[6], &(length(&1 -- three) == 1))
         six = Enum.find(map[6] -- [nine], &(length(&1 -- one) == 5))
         zero = List.first(map[6] -- [nine, six])
@@ -72,8 +76,8 @@ defmodule Aoc2021.Day8.Solution do
         |> Enum.map(&Map.fetch!(lookup, &1))
       end)
     end)
+    |> Flow.map(&Integer.undigits/1)
     |> Enum.to_list()
-    |> Enum.map(&Integer.undigits/1)
     |> Enum.sum()
   end
 
@@ -99,7 +103,7 @@ defmodule Aoc2021.Day8.Solution do
   # end
 
   def input do
-    File.read!("lib/day8/input.txt")
+    File.read!("lib/day8/test.txt")
     |> Advent2021.Parser.parse_list(&Function.identity(&1))
     |> Enum.map(&String.split(&1, " | "))
   end

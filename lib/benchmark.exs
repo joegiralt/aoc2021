@@ -16,11 +16,11 @@ Benchee.run(
     "Day 6, Part 2" => fn -> Aoc2021.Day6.Solution.part(2) end,
     "Day 7, Part 1" => fn -> Aoc2021.Day7.Solution.part(1) end,
     "Day 7, Part 2" => fn -> Aoc2021.Day7.Solution.part(2) end,
-    "Day 8, Part 1" => fn -> Aoc2021.Day7.Solution.part(1) end,
-    "Day 8, Part 2" => fn -> Aoc2021.Day7.Solution.part(2) end,
+    "Day 8, Part 1" => fn -> Aoc2021.Day8.Solution.part(1) end,
+    "Day 8, Part 2" => fn -> Aoc2021.Day8.Solution.part(2) end
   },
-  warmup: 0.01,
-  time: 0.1,
-  memory_time: 0.1,
+  warmup: 0.2,
+  time: 0.2,
+  # memory_time: 0.1,
   parallel: 1
 )
