@@ -21,6 +21,7 @@ defmodule Aoc2021.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
+      {:libgraph, "~> 0.7"},
       {:fastglobal, "~> 1.0"},
       {:benchee, "~> 1.0", only: :dev},
       {:flow, "~> 1.0"},
