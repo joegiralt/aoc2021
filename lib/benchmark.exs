@@ -22,8 +22,8 @@ Benchee.run(
     "Day 9, Part 2" => fn -> Aoc2021.Day9.Solution.part(2, :over_a_second) end,
     "Day 9, Part 2" => fn -> Aoc2021.Day9.Solution.part(2, :graph) end,
     "Day 10, Part 1" => fn -> Aoc2021.Day10.Solution.part(1) end,
-    "Day 11, Part 1" => fn -> Aoc2021.Day11.Solution.part(1) end
-
+    "Day 11, Part 1" => fn -> Aoc2021.Day11.Solution.part(1) end,
+    "Day 11, Part 2" => fn -> Aoc2021.Day11.Solution.part(2) end
   },
   warmup: 0.2,
   time: 0.2,
