@@ -23,8 +23,8 @@ defmodule Aoc2021.Utils.Matrix do
     |> new
   end
 
-  def list_matrix_from_grid(points, m, n) do
-    two_dee = for _ <- 1..m, do: for(_ <- 1..n, do: :x)
+  def list_matrix_from_grid(points, m, n, default \\ :x) do
+    two_dee = for _ <- 1..m, do: for(_ <- 1..n, do: default)
 
     Enum.reduce(points, two_dee, fn {{row, col} = _point, val}, acc ->
       acc
