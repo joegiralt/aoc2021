@@ -51,8 +51,6 @@ defmodule Aoc2021.Day9.Solution do
             end)
             |> Enum.map(fn {_neighbor_value, coord} -> coord end)
 
-          Enum.min([point_value | neighbor_values])
-
           {{x, y},
            %Point{
              value: point_value,
