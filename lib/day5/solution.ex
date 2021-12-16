@@ -3,15 +3,21 @@ defmodule Aoc2021.Day5.Solution do
 
   def part(1) do
     input()
-    |> Enum.filter(fn line ->
+    # |> Flow.from_enumerable(max_demand: 1, stages: 1)
+    |> Flow.partition(max_demand: 1)
+    |> Flow.filter(fn line ->
       elem(line.start, 0) == elem(line.end, 0) || elem(line.start, 1) == elem(line.end, 1)
     end)
-    |> Enum.flat_map(fn line -> line.point_coords end)
+    |> Flow.flat_map(fn line -> line.point_coords end)
+    |> Enum.to_list()
     |> count_frequencies()
   end
 
   def part(2) do
-    input() |> Enum.flat_map(fn line -> line.point_coords end) |> count_frequencies()
+    input()
+    |> Flow.flat_map(fn line -> line.point_coords end)
+    |> Enum.to_list()
+    |> count_frequencies()
   end
 
   def count_frequencies(coords) do
@@ -34,6 +40,5 @@ defmodule Aoc2021.Day5.Solution do
       |> Enum.map(&String.to_integer(&1))
       |> Line.new()
     end)
-    |> Enum.to_list()
   end
 end

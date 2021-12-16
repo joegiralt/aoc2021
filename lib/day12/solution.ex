@@ -11,7 +11,7 @@ defmodule Aoc2021.Day12.Solution do
     |> Enum.count()
   end
 
-  def paths(current_cave, path, graph, seen, :part_1) do
+  defp paths(current_cave, path, graph, seen, :part_1) do
     Graph.neighbors(graph, current_cave)
     |> Enum.reject(fn cave -> cave in seen end)
     |> Enum.flat_map(fn
@@ -23,7 +23,7 @@ defmodule Aoc2021.Day12.Solution do
     end)
   end
 
-  def paths(current_cave, path, graph, seen_once, seen_twice, :part_2) do
+  defp paths(current_cave, path, graph, seen_once, seen_twice, :part_2) do
     Graph.neighbors(graph, current_cave)
     |> Enum.filter(fn cave ->
       MapSet.size(seen_twice) == 0 or
@@ -71,22 +71,17 @@ defmodule Aoc2021.Day12.Solution do
     end)
   end
 
-  def handle_small_caves(seen, cave) do
+  defp handle_small_caves(seen, cave) do
     if(cave |> small_cave?(), do: MapSet.put(seen, cave), else: seen)
   end
 
-  def small_cave?(cave) when is_atom(cave) do
+  defp small_cave?(cave) when is_atom(cave) do
     true
   end
 
-  def small_cave?(_), do: false
+  defp small_cave?(_), do: false
 
-  def pretty_print(g) do
-    {:ok, str} = Graph.to_dot(g)
-    IO.puts(str)
-  end
-
-  def input do
+  defp input do
     input =
       File.read!("lib/day12/input.txt")
       |> String.split("\n", trim: true)

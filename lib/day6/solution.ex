@@ -3,17 +3,18 @@ defmodule Aoc2021.Day6.Solution do
     simulate({0, input()})
   end
 
-  def part(2) do
+  def part(2, num) do
     input()
     |> Enum.frequencies()
-    |> cycle(256)
+    |> Stream.iterate(&cycle(&1))
+    |> Enum.at(num)
     |> Map.values()
     |> Enum.sum()
   end
 
-  def cycle(fish, 0), do: fish
+  # def cycle(fish), do: fish
 
-  def cycle(fish, n) do
+  def cycle(fish) do
     zero_count = Map.get(fish, 0, 0)
 
     fish
@@ -22,7 +23,8 @@ defmodule Aoc2021.Day6.Solution do
     |> Map.new()
     |> Map.update(6, zero_count, &(&1 + zero_count))
     |> Map.put(8, zero_count)
-    |> cycle(n - 1)
+
+    # |> cycle(n - 1)
   end
 
   def simulate({80, life_cycles}) do
