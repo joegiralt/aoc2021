@@ -27,7 +27,8 @@ defmodule Aoc2021.MixProject do
       {:flow, "~> 1.0"},
       {:exla, "~> 0.1.0-dev", github: "elixir-nx/nx", sparse: "exla"},
       {:nx, "~> 0.1.0-dev", github: "elixir-nx/nx", branch: "main", sparse: "nx", override: true},
-      {:credo, "~> 1.6", only: [:dev, :test], runtime: false}
+      {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
+      {:hexate,  ">= 0.6.0"}
     ]
   end
 end
